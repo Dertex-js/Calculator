@@ -28,3 +28,26 @@ const
 
 let accumulation = 0;
 let totalPercents = 0;
+
+const inputs = document.querySelectorAll('.input');
+for(input of inputs){
+    input.addEventListener('input', () => {
+        countingAvailableMoney();
+    })
+}
+
+const strToNum = str => str.value ? parseInt(str.value) : 0;
+
+const countingAvailableMoney = () => {
+    const totalPerMonth = strToNum(incomeSalary) + strToNum(incomeFreelance) + strToNum(incomeExtra1) + strToNum(incomeExtra2);
+    const totalCosts = strToNum(coastsFlat) + strToNum(coastsHouseServices) + strToNum(coastsTransport) + strToNum(coastsCredit);
+
+    totalMonth = totalPerMonth - totalCosts;
+    totalMonthInput.value = totalMonth;
+}
+
+moneyBoxRange.addEventListener('input', e => {
+    const totalPercentEl = document.getElementById('total-percents');
+    totalPercents = e.target.value;
+    totalPercentEl.innerHTML = totalPercents;
+})
