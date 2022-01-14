@@ -30,9 +30,10 @@ let accumulation = 0;
 let totalPercents = 0;
 
 const inputs = document.querySelectorAll('.input');
-for(input of inputs){
+for(let input of inputs){
     input.addEventListener('input', () => {
         countingAvailableMoney();
+        calculationPercents();
     })
 }
 
@@ -50,4 +51,18 @@ moneyBoxRange.addEventListener('input', e => {
     const totalPercentEl = document.getElementById('total-percents');
     totalPercents = e.target.value;
     totalPercentEl.innerHTML = totalPercents;
+    calculationPercents();
 })
+
+const calculationPercents = () => {
+    accumulation = ((totalMonth * totalPercents) / 100).toFixed();
+    accumulationInput.value = accumulation;
+
+    spend.value = totalMonth - accumulation;
+
+    totalDay = (spend.value / 30).toFixed();
+    totalDayInput.value = totalDay;
+
+    totalYear = accumulation * 12;
+    totalYearInput.value = totalYear;
+}
